@@ -1,0 +1,103 @@
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+}
+
+.navbar-fixed-top .nav {
+    padding: 15px 0;
+}
+
+.navbar-fixed-top .navbar-brand {
+    padding: 0 15px;
+}
+
+@media(min-width:768px) {
+    body {
+        padding-top: 100px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    }
+
+    .navbar-fixed-top .navbar-brand {
+        padding: 15px 0;
+    }
+}
+
+#bs-example-navbar-collapse-1 .exteriorUl > li {
+    padding-left:15px;
+}
+
+#bs-example-navbar-collapse-1 ul li span {
+    padding-right:10px;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color:#d3d3d3;
+}
+
+.updateContainer .well{
+    width:200px;
+    height:90px;
+    color: white;
+    float: left;
+    margin-right:50px;
+}
+
+.line {
+    border-bottom:solid gray 5px;
+    width:100%;
+    padding:5px;
+    
+    display:inline-block;
+}
+
+#publisherli, #authorli {float:left;list-style:none;margin:0;padding:0;width:250px;}
+#publisherli,#authorli {height:auto; max-height:180px; overflow: auto;}
+#publisherli li,#authorli li{padding: 10px; background:#FFFBD6;border:#000000 1px solid;}
+#publisherli li:hover,#authorli li:hover{background:#d3d3d3;}
+.error{
+    color:red;
+    font-weight: normal;
+}
+
+.hiddenAlert{
+    color:red;
+    visibility:hidden;
+}
+
+.topBtnCss{
+    margin-bottom:20px;
+    margin-right:10px;
+}
+
+.tblAll{
+    font-size: small;
+} 
+
+body{overflow-y: scroll;
+   
+}
+
+input[type="search"] {margin-left: 10px !important;}
+#example{
+    width:100%;
+}
+
+
+#bookDetail tr td:first-child{
+    width:150px;
+    font-weight: bold;
+}
+
+#bookDetail {
+    font-size: 14px !important;
+}
+
+#memberInfo,#booksInfo,#circulationInfo {
+    color:red;
+    font-size:13px;
+}
+
+#circulationInfo{
+    display: block;
+    width: 235px;
+    word-wrap: break-word;
+}
