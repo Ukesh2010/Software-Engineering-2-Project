@@ -19,11 +19,12 @@ class Counseller extends Controller{
     }
     
     public function editlead($lead_id){
+        $lead=$this->model->leadbyid($lead_id);
         require APP. 'view/counseller/lead_edit.php';
     }
 	
-    public function editleadaction(){
-        
+    public function editleadaction($lead_id){
+      echo  $this->model->editlead($lead_id,$_POST['first_name'],$_POST['middle_name'],$_POST['last_name'],$_POST['address'],$_POST['mobile_no']);
         
     }
     public function leadlist(){

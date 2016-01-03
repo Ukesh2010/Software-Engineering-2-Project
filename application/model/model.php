@@ -34,6 +34,13 @@ public function editlead($lead_id,$first_name,$middle_name,$last_name,$address,$
     
 }
 
+public function leadbyid($lead_id){
+        $sql = "SELECT * FROM `lead` where `lead_id`=$lead_id";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        return $query->fetch();    
+}
+
 public function leadlist(){
         $sql = "SELECT * FROM `lead`";
         $query = $this->db->prepare($sql);
