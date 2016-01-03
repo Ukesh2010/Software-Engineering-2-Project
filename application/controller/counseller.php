@@ -3,6 +3,7 @@ class Counseller extends Controller{
 	
 	  public function index()
     {
+        $leadlist=$this->model->leadtofollowtoday();
         require APP . 'view/counseller/counseller_home.php';
      
     }
@@ -30,5 +31,11 @@ class Counseller extends Controller{
     public function leadlist(){
         $leadlist=$this->model->leadlist();
         require APP. 'view/counseller/lead_list.php';
+    }
+    
+    public function addfollowupaction($lead_id){
+    echo $this->model->addnextfollowup($lead_id,$_POST['followup_date']);
+        
+        
     }
 }

@@ -41,11 +41,31 @@ public function leadbyid($lead_id){
         return $query->fetch();    
 }
 
+public function leadtofollowtoday(){
+    $today=date("Y/m/d");
+        $sql = "SELECT * FROM `lead` where `next_followup_date`='$today'";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();    
+}
+
 public function leadlist(){
         $sql = "SELECT * FROM `lead`";
         $query = $this->db->prepare($sql);
         $query->execute();
         return $query->fetchAll();
+}
+
+public function addnextfollowup($lead_id,$followup_date){
+    $sql="UPDATE `lead` SET `next_followup_date`='$followup_date' WHERE `lead_id`=$lead_id";
+    $query=$this->db->prepare($sql);
+   return $query->execute();
+}
+
+public function addfollowup($lead_id,$followup_date){
+    $sql="INSERT INTO `followup`(`lead_id`, `followup_date`) VALUES ($lead_id,'$followup_date')";
+    $query=$this->db->prepare($sql);
+   return $query->execute();
 }
 
 

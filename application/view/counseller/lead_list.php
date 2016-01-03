@@ -6,5 +6,14 @@
 				<td><?php echo $lead->lead_address; ?></td>
 					<td><?php echo $lead->lead_mobile_no; ?></td>
 					<td><a href="<?php echo URL . 'counseller/editlead/' . htmlspecialchars($lead->lead_id, ENT_QUOTES, 'UTF-8'); ?>"><button>Edit</button></a></td>
-</tr>
+					<td><?php if(is_null($lead->next_followup_date) || empty($lead->next_followup_date) || !isset($lead->next_followup_date)){ ?>
+						<form method="post" action="<?php echo URL; ?>counseller/addfollowupaction/<?php echo htmlspecialchars($lead->lead_id, ENT_QUOTES, 'UTF-8'); ?>">
+							<input type="date" name="followup_date" /> <input type="submit" value="Set Followup" />
+						</form>
+				<?php	}else if(strtotime($lead->next_followup_date)>strtotime(date("Y/m/d"))){?>
+					<label> <?php echo $lead->next_followup_date; ?></label>
+				<?php}else{ ?>
+				<input type="date" name="followup_date" /> <input type="submit" value="Set Followup" />
+			<?php	} ?></td>
+	</tr>
 <?php } ?>
