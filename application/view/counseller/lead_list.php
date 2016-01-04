@@ -1,3 +1,25 @@
+<table>
+	<thead>
+		<th>
+			First Name
+			</th>
+			<th>
+				Middle Name
+			</th>
+			<th>
+				Last Name
+			</th>
+			<th>
+				Address
+			</th>
+			<th>
+				Mobile No
+			</th>
+			<th>
+				Action
+			</th>
+		<thead>
+			<tbody>
   <?php foreach ($leadlist as $lead) { ?>
 <tr>
 	<td><?php echo $lead->lead_first_name; ?></td>
@@ -13,7 +35,10 @@
 				<?php	}else if(strtotime($lead->next_followup_date)>strtotime(date("Y/m/d"))){?>
 					<label> <?php echo $lead->next_followup_date; ?></label>
 				<?php}else{ ?>
-				<input type="date" name="followup_date" /> <input type="submit" value="Set Followup" />
+				<!--<input type="date" name="followup_date" /> <input type="submit" value="Set Followup" />-->
 			<?php	} ?></td>
 	</tr>
 <?php } ?>
+
+</tbody>
+</table>

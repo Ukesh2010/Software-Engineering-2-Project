@@ -16,6 +16,7 @@ class Counseller extends Controller{
     public function addleadaction(){
       echo  $this->model->addlead($_POST['first_name'],$_POST['middle_name'],$_POST['last_name'],$_POST['address'],$_POST['mobile_no']);
         // print_r($_POST);
+         header('location: ' . URL . 'counseller/leadlist');
         
     }
     
@@ -26,7 +27,7 @@ class Counseller extends Controller{
 	
     public function editleadaction($lead_id){
       echo  $this->model->editlead($lead_id,$_POST['first_name'],$_POST['middle_name'],$_POST['last_name'],$_POST['address'],$_POST['mobile_no']);
-        
+                 header('location: ' . URL . 'counseller/leadlist');
     }
     public function leadlist(){
         $leadlist=$this->model->leadlist();
