@@ -1,14 +1,4 @@
-<!--<form action="<?php echo URL; ?>counseller/addleadaction" method="POST">
-	First Name:<input type="text" name="first_name"/><br>
-	Middle Name:<input type="text" name="middle_name"/><br>
-	Last Name:<input type="text" name="last_name"/><br>
-	Address:<input type="text" name="address"/><br>
-	Mobile No:<input type="text" name="mobile_no"/><br>
-	<input  type="submit" value="Add Lead"/>
-	</form>-->
-	
-	
-	<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
     <head>
         <title>LibraryExpress</title>
@@ -17,10 +7,10 @@
 
         <script src="<?php echo URL; ?>js/jquery-1.11.2.min.js"></script>
         <script src="<?php echo URL; ?>js/bootstrap.min.js"></script>
-      
+
         <link rel="stylesheet" href="<?php echo URL; ?>css/bootstrap.min.css">
         <script src="<?php echo URL; ?>js/jquery.validate.min.js"></script>
-   
+
 
         <script>
             $(document).ready(function () {
@@ -31,23 +21,21 @@
                         firstname: {
                             required: true,
                             minlength: 3,
-                            alphanumeric:true
+                            alphanumeric: true
                         },
                         lastname: {
                             required: true,
                             minlength: 3,
-                            alphanumeric:true
+                            alphanumeric: true
                         },
-                     
-                     
                         phnno: {
                             required: true,
                             minlength: 10,
                             maxlength: 10
-                        },address:{
-							required:true,minlength:3
-						}
-						
+                        }, address: {
+                            required: true, minlength: 3
+                        }
+
                     },
                     messages: {
                         firstname: {
@@ -58,11 +46,11 @@
                             required: "Please enter last name.",
                             minlength: "Lastname must be at least 3 characters long."
                         },
-						address:{
-							  required: "Please enter Address.",
+                        address: {
+                            required: "Please enter Address.",
                             minlength: "Address must be at least 3 characters long."
-						}
-                       
+                        }
+
                     }
 
                 });
@@ -155,12 +143,29 @@
         <script>
 
 
-          
+
         </script>
 
     </head>
 
     <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="">LMS</a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href=""> <?php echo $counsellerDetail->counseller_username; ?></a></li>
+                        <li> <a href="<?php echo URL . 'counseller/leadlist' ?>">Lead list</a></li>
+                        <li> <a href="<?php echo URL . 'counseller/addlead' ?>">Add List</a></li>
+                        <li><a href="<?php echo URL . 'counseller/logout' ?>"> Logout</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
         <div class="container" >
             <div class="row">
                 <div class="col-sm-4 col-md-4 col-sm-offset-4">
@@ -173,14 +178,14 @@
 
                             <p><label for="first_name">Firstname *</label><input type="text" class="form-control"  name="first_name"  autofocus ></p>
                             <p><label for="middle_name">Middlename *</label><input type="text" class="form-control"  name="middle_name"  ></p>
-               <p><label for="last_name">Lastname *</label><input type="text" class="form-control"  name="last_name"  ></p>
-              
-			                <p><label for="address">Address *</label><input type="text" class="form-control" name="address"  ></p>
-                         
+                            <p><label for="last_name">Lastname *</label><input type="text" class="form-control"  name="last_name"  ></p>
+
+                            <p><label for="address">Address *</label><input type="text" class="form-control" name="address"  ></p>
+
                             <p><label for="contactNumber">Contact Number *</label>(+977)<input type="number" class="form-control"  name="mobile_no"  ></p>
- <br/>
-                          	 <input class="btn  btn-primary btn-block" type="submit" id="submit" value="Add">
-                        	 <button class="btn  btn-primary btn-block"  >Cancel</button>
+                            <br/>
+                            <input class="btn  btn-primary btn-block" type="submit" id="submit" value="Add">
+                            <button class="btn  btn-primary btn-block"  >Cancel</button>
                             <br/>
                         </form>
 
