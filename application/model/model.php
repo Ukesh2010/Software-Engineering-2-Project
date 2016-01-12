@@ -13,14 +13,14 @@ class Model {
         }
     }
 
-    public function addIntake($date) {
-        $sql = "insert into intake(`intake_start_date`) values('$date')";
+    public function addLead($first_name, $middle_name, $last_name, $address, $mobile_no, $counseller_id) {
+        $sql = "SELECT * FROM `intake` ORDER by intake_start_date DESC LIMIT 1";
         $query = $this->db->prepare($sql);
         $query->execute();
-    }
+        $intake = $query->fetch();
 
-    public function addLead($first_name, $middle_name, $last_name, $address, $mobile_no, $counseller_id) {
-        $sql = "INSERT INTO `lead`(`lead_first_name`, `lead_middle_name`, `lead_last_name`, `lead_address`, `lead_mobile_no`,`counseller_id`) VALUES ('$first_name','$middle_name','$last_name','$address','$mobile_no','$counseller_id')";
+        $intake_id = $intake->intake_id;
+        $sql = "INSERT INTO `lead`(`lead_first_name`, `lead_middle_name`, `lead_last_name`, `lead_address`, `lead_mobile_no`,`counseller_id`,`intake_id`) VALUES ('$first_name','$middle_name','$last_name','$address','$mobile_no','$counseller_id','$intake_id')";
         $query = $this->db->prepare($sql);
         return $query->execute();
     }
@@ -112,6 +112,65 @@ class Model {
 
     public function changetostudent($lead_id) {
         $sql = "update `lead` set `isStudent`=true where `lead_id`=$lead_id";
+        $query = $this->db->prepare($sql);
+        return $query->execute();
+    }
+
+    public function counsellerlist() {
+        $sql = "SELECT * FROM `counseller`";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    public function addcounseller($username, $password, $fullname, $address, $email, $phoneno) {
+        $sql = "INSERT INTO `counseller`(`counseller_username`, `counseller_password`, `counseller_fullname`, `counseller_address`, `counseller_email`, `counseller_phone_no`) VALUES ('$username','$password','$fullname','$address','$email','$phoneno')";
+        $query = $this->db->prepare($sql);
+        return $query->execute();
+    }
+
+    public function editcounseller($id, $username, $password, $fullname, $address, $email, $phoneno) {
+        $sql = "UPDATE `counseller` set `counseller_username`='$username', `counseller_password`='$password', `counseller_fullname`='$fullname', `counseller_address`='$address', `counseller_email`='$email', `counseller_phone_no`='$phoneno' where `counseller_id`=$id";
+        $query = $this->db->prepare($sql);
+        return $query->execute();
+    }
+
+    public function deletecounseller($id) {
+        $sql = "delete from `counseller` where `counseller_id`=$id";
+        $query = $this->db->prepare($sql);
+        return $query->execute();
+    }
+
+    public function counsellerreport() {
+        $sql = "SELECT c.counseller_username,count(f.followup_date) as no_of_followup FROM `counseller` c join lead l on (c.counseller_id=l.counseller_id) join followup f on (f.lead_id=l.lead_id) ";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    public function statusreport($status) {
+        $sql = "select count(lead_id) as no_of_leads, `status` from lead where `status` ='$status'";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        return $query->fetch();
+    }
+
+    public function activeleadreport() {
+        $sql = "select i.intake_name, count(l.lead_id) as no_of_lead from intake i join lead l on (i.intake_id=l.intake_id) where l.status='active' group by i.intake_id";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    public function getCurrentIntake() {
+        $sql = "SELECT * FROM `intake` ORDER by intake_start_date DESC LIMIT 1";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        return $query->fetch();
+    }
+
+    public function addIntake($name, $date) {
+        $sql = "INSERT INTO `intake`(`intake_start_date`, `intake_name`) VALUES ('$date','$name')";
         $query = $this->db->prepare($sql);
         return $query->execute();
     }
