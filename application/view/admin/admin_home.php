@@ -108,7 +108,7 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="">LMS</a>
+                    <a class="navbar-brand" href="<?php echo URL . 'admin' ?>">LMS</a>
                 </div>
                 <div>
                     <ul class="nav navbar-nav navbar-left">
@@ -118,8 +118,8 @@
                         <!--<li><a href=""> <?php echo $counsellerDetail->counseller_username; ?></a></li>-->
                         <li><a onclick="addintake()">Add Intake</a></li>
                         <li><a><?php echo $intake->intake_name; ?></a></li>
-                        <li class="active"> <a href="<?php echo URL . 'admin' ?>">Manage Counseller</a></li>
                         <li> <a href="<?php echo URL . 'admin/counsellerreport' ?>">Report</a></li>
+                        <li class="active"> <a href="<?php echo URL . 'admin' ?>">Manage Counseller</a></li>
                         <li><a href="<?php echo URL . 'counseller/logout' ?>"> Logout</a></li>
                     </ul>
                 </div>

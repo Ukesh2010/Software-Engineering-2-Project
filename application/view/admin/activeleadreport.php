@@ -17,7 +17,7 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="">LMS</a>
+                    <a class="navbar-brand" href="<?php echo URL . 'admin' ?>">LMS</a>
                 </div>
                 <div>
                     <ul class="nav navbar-nav navbar-left">
@@ -43,34 +43,48 @@
         <script>
             $(function () {
                 $.post("<?php echo URL; ?>admin/activeleadreportdata", function (data) {
-                    var intakelist = data.map(function (a) {
-                        return a.intake_name;
+                    $.post("<?php echo URL; ?>admin/activeleadreportdata2", function (data2) {
+
+                        var intakelist = data.map(function (a) {
+                            return a.intake_name;
+                        });
+                        var leadlist = data.map(function (a) {
+                            return a.no_of_lead;
+                        });
+                        var studentlist = data2.map(function (a) {
+                            return a.no_of_student;
+                        });
+                        console.log(studentlist);
+                        var randomScalingFactor = function () {
+                            return Math.round(Math.random() * 100)
+                        };
+                        var barChartData = {
+                            labels: intakelist,
+                            datasets: [{
+                                    label: "Active leads",
+                                    fillColor: "rgba(220,220,220,0.5)",
+                                    strokeColor: "rgba(220,220,220,0.8)",
+                                    highlightFill: "rgba(220,220,220,0.75)",
+                                    highlightStroke: "rgba(220,220,220,1)",
+                                    data: leadlist
+                                },
+                                {
+                                    label: "Students",
+                                    fillColor: "rgba(151,187,205,0.5)",
+                                    strokeColor: "rgba(151,187,205,0.8)",
+                                    highlightFill: "rgba(151,187,205,0.75)",
+                                    highlightStroke: "rgba(151,187,205,1)",
+                                    data: studentlist
+                                }]
+
+
+
+                        }
+                        var ctx = document.getElementById("canvas").getContext("2d");
+                        window.myBar = new Chart(ctx).Bar(barChartData, {
+                            responsive: true
+                        });
                     });
-                    var leadlist = data.map(function (a) {
-                        return a.no_of_lead;
-                    });
-
-                    var randomScalingFactor = function () {
-                        return Math.round(Math.random() * 100)
-                    };
-                    var barChartData = {
-                        labels: intakelist,
-                        datasets: [{
-                                fillColor: "rgba(220,220,220,0.5)",
-                                strokeColor: "rgba(220,220,220,0.8)",
-                                highlightFill: "rgba(220,220,220,0.75)",
-                                highlightStroke: "rgba(220,220,220,1)",
-                                data: leadlist
-                            }]
-
-
-
-                    }
-                    var ctx = document.getElementById("canvas").getContext("2d");
-                    window.myBar = new Chart(ctx).Bar(barChartData, {
-                        responsive: true
-                    });
-
                 });
             });
         </script>

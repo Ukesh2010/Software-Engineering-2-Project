@@ -142,7 +142,7 @@ class Model {
     }
 
     public function counsellerreport() {
-        $sql = "SELECT c.counseller_username,count(f.followup_date) as no_of_followup FROM `counseller` c join lead l on (c.counseller_id=l.counseller_id) join followup f on (f.lead_id=l.lead_id) ";
+        $sql = "SELECT c.counseller_username,count(f.followup_date) as no_of_followup FROM `counseller` c join lead l on (c.counseller_id=l.counseller_id) join followup f on (f.lead_id=l.lead_id) group by c.counseller_username ";
         $query = $this->db->prepare($sql);
         $query->execute();
         return $query->fetchAll();
@@ -162,11 +162,85 @@ class Model {
         return $query->fetchAll();
     }
 
+    public function activeleadreport2() {
+        $sql2 = "select i.intake_name, count(l.lead_id) as no_of_student from intake i join lead l on (i.intake_id=l.intake_id) where l.isStudent=1 group by i.intake_id";
+        $query2 = $this->db->prepare($sql2);
+        $query2->execute();
+        return $query2->fetchAll();
+    }
+
+    public function customizedreport_semwise($intake_id) {
+        $sql1 = "select count(lead_id) as no_of_leads, `status` from lead where `status` ='active' AND intake_id=$intake_id";
+        $query1 = $this->db->prepare($sql1);
+        $query1->execute();
+        $active = $query1->fetch();
+
+        $sql2 = "select count(lead_id) as no_of_leads, `status` from lead where `status` ='postponed' AND intake_id=$intake_id";
+        $query2 = $this->db->prepare($sql2);
+        $query2->execute();
+        $postponed = $query2->fetch();
+
+        $sql3 = "select count(lead_id) as no_of_leads, `status` from lead where `status` ='expired' AND intake_id=$intake_id";
+        $query3 = $this->db->prepare($sql3);
+        $query3->execute();
+        $expired = $query3->fetch();
+
+        $sql4 = "select count(lead_id) as no_of_leads, `status` from lead where `status` ='notinterested' AND intake_id=$intake_id";
+        $query4 = $this->db->prepare($sql4);
+        $query4->execute();
+        $notinterested = $query4->fetch();
+
+        $data = array();
+        array_push($data, $active);
+        array_push($data, $postponed);
+        array_push($data, $expired);
+        array_push($data, $notinterested);
+
+        return $data;
+    }
+
+    public function customizedreport_counwise($counseller_id) {
+        $sql1 = "select count(lead_id) as no_of_leads, `status` from lead where `status` ='active' AND counseller_id=$counseller_id";
+        $query1 = $this->db->prepare($sql1);
+        $query1->execute();
+        $active = $query1->fetch();
+
+        $sql2 = "select count(lead_id) as no_of_leads, `status` from lead where `status` ='postponed' AND counseller_id=$counseller_id";
+        $query2 = $this->db->prepare($sql2);
+        $query2->execute();
+        $postponed = $query2->fetch();
+
+        $sql3 = "select count(lead_id) as no_of_leads, `status` from lead where `status` ='expired' AND counseller_id=$counseller_id";
+        $query3 = $this->db->prepare($sql3);
+        $query3->execute();
+        $expired = $query3->fetch();
+
+        $sql4 = "select count(lead_id) as no_of_leads, `status` from lead where `status` ='notinterested' AND counseller_id=$counseller_id";
+        $query4 = $this->db->prepare($sql4);
+        $query4->execute();
+        $notinterested = $query4->fetch();
+
+        $data = array();
+        array_push($data, $active);
+        array_push($data, $postponed);
+        array_push($data, $expired);
+        array_push($data, $notinterested);
+
+        return $data;
+    }
+
     public function getCurrentIntake() {
         $sql = "SELECT * FROM `intake` ORDER by intake_start_date DESC LIMIT 1";
         $query = $this->db->prepare($sql);
         $query->execute();
         return $query->fetch();
+    }
+
+    public function getIntakes() {
+        $sql = "SELECT * FROM `intake` ";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
     }
 
     public function addIntake($name, $date) {

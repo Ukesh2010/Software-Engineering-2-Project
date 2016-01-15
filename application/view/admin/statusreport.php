@@ -17,7 +17,7 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="">LMS</a>
+                    <a class="navbar-brand" href="<?php echo URL . 'admin' ?>">LMS</a>
                 </div>
                 <div>
                     <ul class="nav navbar-nav navbar-left">
@@ -42,11 +42,12 @@
         </div>
         <script>
             $(function () {
+                statuslist = ['Active', 'Expired', 'Not interested', 'Postponed'];
                 $.post("<?php echo URL; ?>admin/statusreportdata", function (data) {
                     console.log(data);
-                    var statuslist = data.map(function (a) {
-                        return a.status;
-                    });
+//                    var statuslist = data.map(function (a) {
+//                        return a.status;
+//                    });
                     var leadlist = data.map(function (a) {
                         return a.no_of_leads;
                     });

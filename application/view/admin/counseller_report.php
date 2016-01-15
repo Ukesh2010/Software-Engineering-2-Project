@@ -17,7 +17,7 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="">LMS</a>
+                    <a class="navbar-brand" href="<?php echo URL . 'admin' ?>">LMS</a>
                 </div>
                 <div>
                     <ul class="nav navbar-nav navbar-left">

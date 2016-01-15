@@ -111,8 +111,13 @@ class Counseller extends Controller {
 
     public function logout() {
         session_start();
-        unset($_SESSION['counseller']);
-        header('location: ' . URL . 'counseller');
+        if (isset($_SESSION['counseller'])) {
+            unset($_SESSION['counseller']);
+        }
+        if (isset($_SESSION['admin'])) {
+            unset($_SESSION['admin']);
+        }
+        header('location: ' . URL . 'home');
     }
 
 }

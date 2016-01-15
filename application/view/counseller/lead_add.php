@@ -152,13 +152,13 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="">LMS</a>
+                    <a class="navbar-brand" href="<?php echo URL . 'counseller' ?>">LMS</a>
                 </div>
                 <div>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href=""> <?php echo $counsellerDetail->counseller_username; ?></a></li>
+                        <li><a href="#"> <?php echo $counsellerDetail->counseller_username; ?></a></li>
                         <li> <a href="<?php echo URL . 'counseller/leadlist' ?>">Lead list</a></li>
-                        <li> <a href="<?php echo URL . 'counseller/addlead' ?>">Add List</a></li>
+                        <li class="active"> <a href="<?php echo URL . 'counseller/addlead' ?>">Add Lead</a></li>
                         <li><a href="<?php echo URL . 'counseller/logout' ?>"> Logout</a></li>
 
                     </ul>
@@ -168,7 +168,7 @@
 
         <div class="container" >
             <div class="row">
-                <div class="col-sm-4 col-md-4 col-sm-offset-4">
+                <div class="col-sm-4 col-sm-offset-4">
 
                     <div class="account-wall" id="signupDiv">
 
@@ -185,7 +185,6 @@
                             <p><label for="contactNumber">Contact Number *</label>(+977)<input type="number" class="form-control"  name="mobile_no"  ></p>
                             <br/>
                             <input class="btn  btn-primary btn-block" type="submit" id="submit" value="Add">
-                            <button class="btn  btn-primary btn-block"  >Cancel</button>
                             <br/>
                         </form>
 

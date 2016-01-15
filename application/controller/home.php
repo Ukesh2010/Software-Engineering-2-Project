@@ -4,6 +4,11 @@ class Home extends Controller {
 
     public function index() {
         session_start();
+        if (isset($_SESSION['counseller'])) {
+            header('location: ' . URL . 'counseller');
+        } else if (isset($_SESSION['admin'])) {
+            header('location: ' . URL . 'admin');
+        }
         $fail = false;
         if (isset($_SESSION['fail'])) {
             $fail = true;
@@ -16,7 +21,13 @@ class Home extends Controller {
         session_start();
         switch (isset($_POST['type']) ? $_POST['type'] : 3) {
             case 0:
-                header('location: ' . URL . 'admin');
+                if ($_POST['username'] == "admin" && $_POST['password'] == "admin") {
+                    $_SESSION['admin'] = TRUE;
+                    header('location: ' . URL . 'admin');
+                } else {
+                    $_SESSION['fail'] = TRUE;
+                    header('location: ' . URL . 'home');
+                }
                 break;
             case 1:
                 $result = $this->model->counsellerlogin($_POST['username'], $_POST['password']);

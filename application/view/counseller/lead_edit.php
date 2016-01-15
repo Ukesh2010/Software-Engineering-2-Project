@@ -153,11 +153,11 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="">LMS</a>
+                    <a class="navbar-brand" href="<?php echo URL . 'counseller' ?>">LMS</a>
                 </div>
                 <div>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href=""> <?php echo $counsellerDetail->counseller_username; ?></a></li>
+                        <li><a href="#"> <?php echo $counsellerDetail->counseller_username; ?></a></li>
                         <li> <a href="<?php echo URL . 'counseller/leadlist' ?>">Lead list</a></li>
                         <li> <a href="<?php echo URL . 'counseller/addlead' ?>">Add List</a></li>
                         <li><a href="<?php echo URL . 'counseller/logout' ?>"> Logout</a></li>
@@ -169,11 +169,11 @@
 
         <div class="container" >
             <div class="row">
-                <div class="col-sm-4 col-md-4 col-sm-offset-4">
+                <div class="col-sm-4  col-sm-offset-4">
 
                     <div class="account-wall" id="signupDiv">
 
-                        <h2 class="text-center" style="margin-top:5px;">Add Lead</h2>
+                        <h2 class="text-center" style="margin-top:5px;">Edit Lead</h2>
                         <div id ="error" style="height:auto;"></div>
                         <form id="signupForm" class="form-signin" method="post" action="<?php echo URL; ?>counseller/editleadaction/<?php echo htmlspecialchars($lead->lead_id, ENT_QUOTES, 'UTF-8'); ?>" >
 
